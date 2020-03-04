@@ -5,6 +5,7 @@ from google.appengine.ext import ndb
 import os
 
 from eVehicle import EVehicle
+from addEV import AddEV
 
 
 JINJA_ENVIRONMENT = jinja2.Environment(
@@ -53,6 +54,7 @@ class MainPage(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication(
             [('/', MainPage),
+             ('/add', AddEV )
             ],
 
             debug = True

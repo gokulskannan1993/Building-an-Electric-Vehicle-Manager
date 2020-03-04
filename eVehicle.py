@@ -9,3 +9,12 @@ class EVehicle(ndb.Model):
     wltpRange = ndb.FloatProperty()
     cost = ndb.FloatProperty()
     power = ndb.FloatProperty()
+
+    # method to check for duplicate entry
+    def isUnique(self):
+        query = EVehicle.query(EVehicle.name == self.name , EVehicle.manufacturer == self.manufacturer
+                , EVehicle.year == self.year).fetch()
+        if len(query) == 0:
+            return True
+        else:
+            return False
