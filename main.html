@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Electric Vehicle</title>
-  </head>
-  <body>
-    {% if user: %}
-    <p>Hello {{user.email()}} welcome to the application</p>
 
-    <p>To update the info <a href="/add">Click Here</a> </p>
-    {% else: %}
-    <p>Hello guest welcome to the application</p>
-    {% endif %}
-    <p>you can {{url_string}} <a href="{{url}}">here</a> </p>
+<head>
+  <meta charset="utf-8">
+  <title>Electric Vehicle</title>
+</head>
 
-  </body>
+<body>
+  {% if user: %}
+  <p>Hello {{user.email()}} welcome to the application</p>
+
+  <p>To update the info <a href="/add">Click Here</a> </p>
+  {% else: %}
+  <p>Hello guest welcome to the application</p>
+  {% endif %}
+  <p>you can {{url_string}} <a href="{{url}}">here</a> </p>
+
+  <h5>You can Search for Cars <a href="/search">Here</a> </h5>
+
+
+
+
+</body>
+
 </html>

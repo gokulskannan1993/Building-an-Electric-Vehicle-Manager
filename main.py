@@ -6,6 +6,8 @@ import os
 
 from eVehicle import EVehicle
 from addEV import AddEV
+from search import Search
+from ev import EV
 
 
 JINJA_ENVIRONMENT = jinja2.Environment(
@@ -19,7 +21,6 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 class MainPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
-
 
         url = ''
         url_string = ''
@@ -50,11 +51,11 @@ class MainPage(webapp2.RequestHandler):
 
 
 
-
-
 app = webapp2.WSGIApplication(
             [('/', MainPage),
-             ('/add', AddEV )
+             ('/add', AddEV ),
+             ('/search', Search),
+             ('/ev', EV)
             ],
 
             debug = True
