@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Compare</title>
+  </head>
+  <body>
+    <form class="" action="/compare" method="post">
+      {% for ev in eVehicles: %}
+        <input type="checkbox" name="ev" value="{{ev.key.id()}}">{{ev.name}}<br><br>
+      {%endfor%}
+      <input type="submit" name="button" value="Compare">
+    </form>
+
+    <table>
+
+      <tr>
+        <th>Name</th>
+        <th>Manufacturer</th>
+        <th>Year</th>
+        <th>Battery Size</th>
+        <th>WLTP Range</th>
+        <th>Cost</th>
+        <th>Power</th>
+
+      </tr>
+      {% for car in cars: %}
+      <tr>
+
+          <td>{{car.name}}</td>
+          <td>{{car.manufacturer}}</td>
+          <td>{{car.year}}</td>
+          <td>{{car.batterySize}}</td>
+          <td>{{car.wltpRange}}</td>
+          <td>{{car.cost}}</td>
+          <td>{{car.power}}</td>
+
+
+      </tr>
+      {% endfor %}
+    </table>
+
+
+  </body>
+</html>

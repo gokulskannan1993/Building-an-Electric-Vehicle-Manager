@@ -8,6 +8,7 @@ from eVehicle import EVehicle
 from addEV import AddEV
 from search import Search
 from ev import EV
+from compare import Compare
 
 
 JINJA_ENVIRONMENT = jinja2.Environment(
@@ -55,7 +56,8 @@ app = webapp2.WSGIApplication(
             [('/', MainPage),
              ('/add', AddEV ),
              ('/search', Search),
-             ('/ev', EV)
+             ('/ev', EV),
+             ('/compare', Compare)
             ],
 
             debug = True
