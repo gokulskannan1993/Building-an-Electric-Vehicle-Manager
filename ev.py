@@ -19,8 +19,57 @@ class EV(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
 
-        key = ndb.Key('MyList', 'default')
-        myEV = key.get()
+        user = users.get_current_user()
+
+        key = ndb.Key('EVehicle', int(self.request.get('key')))
+
+
+
+        ev = key.get()
+
+        urlKey = self.request.get('key')
+
+
+
+
+        template_values = {
+            'name' : ev.name,
+            'manufacturer' : ev.manufacturer,
+            'year' : ev.year,
+            'batterySize' : ev.batterySize,
+            'wltpRange' : ev.wltpRange,
+            'cost' : ev.cost,
+            'power' : ev.power,
+            'user': user,
+            'key': urlKey
+        }
+
 
         template = JINJA_ENVIRONMENT.get_template('ev.html')
-        self.response.write(template.render())
+        self.response.write(template.render(template_values))
+
+    def post(self):
+        self.response.headers['Content-Type'] = 'text/html'
+
+
+        key = ndb.Key('EVehicle', int(self.request.get('urlKey')))
+        ev = key.get()
+
+        if self.request.get('button') == 'Update':
+            ev.name = self.request.get('name')
+            ev.manufacturer = self.request.get('manufacturer')
+            ev.year = int(self.request.get('year'))
+            ev.batterySize = float(self.request.get('batterySize'))
+            ev.wltpRange = float(self.request.get('wltpRange'))
+            ev.cost = float(self.request.get('cost'))
+            ev.power = float(self.request.get('power'))
+
+            if ev.isUnique():
+                ev.put()
+                self.redirect('/search')
+            else:
+                self.response.write('The Car already in the DataBase')
+
+        elif self.request.get('button') == 'Delete':
+            ev.key.delete()
+            self.redirect('/search')

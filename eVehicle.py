@@ -1,14 +1,14 @@
 from google.appengine.ext import ndb
-import datetime
+
 
 class EVehicle(ndb.Model):
-    name = ndb.StringProperty(required = True)
-    manufacturer = ndb.StringProperty(required = True)
-    year = ndb.IntegerProperty(default = datetime.datetime.now().year)
-    batterySize = ndb.FloatProperty(default = 0)
-    wltpRange = ndb.FloatProperty(default = 0)
-    cost = ndb.FloatProperty(default = 0)
-    power = ndb.FloatProperty(default = 0)
+    name = ndb.StringProperty()
+    manufacturer = ndb.StringProperty()
+    year = ndb.IntegerProperty()
+    batterySize = ndb.FloatProperty()
+    wltpRange = ndb.FloatProperty()
+    cost = ndb.FloatProperty()
+    power = ndb.FloatProperty()
 
     # method to check for duplicate entry
     def isUnique(self):
