@@ -19,11 +19,19 @@
     <tr>
       <thead>
         <th>Name</th>
+        <th></th>
+        <th>AvgRating</th>
+        <th></th>
         <th>Manufacturer</th>
+        <th></th>
         <th>Year</th>
-        <th>Battery Size</th>
-        <th>WLTP Range</th>
+        <th></th>
+        <th>BatterySize</th>
+        <th></th>
+        <th>WLTPRange</th>
+        <th></th>
         <th>Cost</th>
+        <th></th>
         <th>Power</th>
 
       </thead>
@@ -34,12 +42,50 @@
       <tr>
 
         <td><a href="/ev?key={{car.key.id()}}">{{car.name}}</a> </td>
+        <td></td>
+        {%if car.avgRating() == maxRating:%}
+        <td style="color: green;">{{car.avgRating()}}</td>
+        {%elif car.avgRating() == minRating:%}
+        <td style="color: red;">{{car.avgRating()}}</td>
+        {%else:%}
+        <td>{{car.avgRating()}}</td>
+        {% endif %}
+        <td></td>
         <td>{{car.manufacturer}}</td>
+        <td></td>
         <td>{{car.year}}</td>
+        <td></td>
+        {% if car.batterySize == maxBatterySize:%}
+        <td style="color: green;">{{car.batterySize}}</td>
+        {%elif car.batterySize == minBatterySize:%}
+        <td style="color: red;">{{car.batterySize}}</td>
+        {%else:%}
         <td>{{car.batterySize}}</td>
+        {%endif%}
+        <td></td>
+        {%if car.wltpRange == maxWltp:%}
+        <td style="color: green;">{{car.wltpRange}}</td>
+        {%elif car.wltpRange == minWltp:%}
+        <td style="color: red;">{{car.wltpRange}}</td>
+        {%else:%}
         <td>{{car.wltpRange}}</td>
+        {%endif%}
+        <td></td>
+        {%if car.cost == minCost:%}
+        <td style="color: green;">{{car.cost}}</td>
+        {%elif car.cost == maxCost:%}
+        <td style="color: red;">{{car.cost}}</td>
+        {%else:%}
         <td>{{car.cost}}</td>
+        {%endif%}
+        <td></td>
+        {%if car.power == maxPower:%}
+        <td style="color: green;">{{car.power}}</td>
+        {%elif car.power == minPower:%}
+        <td style="color: red;">{{car.power}}</td>
+        {%else:%}
         <td>{{car.power}}</td>
+        {%endif%}
 
 
       </tr>

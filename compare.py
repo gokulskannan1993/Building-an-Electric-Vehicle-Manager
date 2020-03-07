@@ -5,6 +5,7 @@ from google.appengine.ext import ndb
 import os
 
 from eVehicle import EVehicle
+from functions import *
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader = jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -43,10 +44,30 @@ class Compare(webapp2.RequestHandler):
                 car.append(ev)
 
             if len(car) >=2:
-
+                maxRating = getMaxAvgRating(car)
+                minRating = getMinAvgRating(car)
+                maxBatterySize = getMaxBattery(car)
+                minBatterySize = getMinBattery(car)
+                maxWltp = getMaxWltpRange(car)
+                minWltp = getMinWltpRange(car)
+                maxCost = getMaxCost(car)
+                minCost = getMinCost(car)
+                maxPower = getMaxPower(car)
+                minPower = getMinPower(car)
                 template_values = {
                     'cars': car,
-                    'eVehicles': query
+                    'eVehicles': query,
+                    'maxRating': maxRating,
+                    'minRating': minRating,
+                    'minBatterySize':minBatterySize,
+                    'maxBatterySize':maxBatterySize,
+                    'minWltp': minWltp,
+                    'maxWltp': maxWltp,
+                    'minCost': minCost,
+                    'maxCost': maxCost,
+                    'minPower': minPower,
+                    'maxPower': maxPower
+
                 }
 
                 template = JINJA_ENVIRONMENT.get_template('compare.html')
