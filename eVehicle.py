@@ -9,6 +9,8 @@ class EVehicle(ndb.Model):
     wltpRange = ndb.FloatProperty()
     cost = ndb.FloatProperty()
     power = ndb.FloatProperty()
+    reviews = ndb.StringProperty(repeated=True)
+    rating = ndb.IntegerProperty(repeated=True)
 
     # method to check for duplicate entry
     def isUnique(self):
@@ -18,3 +20,15 @@ class EVehicle(ndb.Model):
             return True
         else:
             return False
+
+
+
+    # method to calculate average rating
+    def avgRating(self):
+        totalRating = 0
+        if self.rating:
+            for score in self.rating:
+                totalRating = totalRating + score
+            return totalRating/len(self.rating)
+        else:
+            return 0

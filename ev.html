@@ -10,14 +10,27 @@
   <form class="" action="/ev?urlKey={{key}}" method="post">
 
     Name: <input type="text" name="name" value="{{name}}"> <br><br>
+    Average Rating: {{rating}}/10 <br><br>
     Manufacturer: <input type="text" name="manufacturer" value="{{manufacturer}}"> <br><br>
     Year: <input type="number" name="year" value="{{year}}" min="1950" max="2020"> <br><br>
     Battery Size: <input type="number" name="batterySize" value="{{batterySize}}" min="1" max="999999"> <br><br>
     WLTP Range: <input type="number" name="wltpRange" value="{{wltpRange}}" min="1" max="999999"> <br><br>
-    Cost: <input type="number" name="cost" value="{{cost}}" min="1" max="999999"> <br><br>
+    Cost($): <input type="number" name="cost" value="{{cost}}" min="1" max="999999"> <br><br>
     Power: <input type="number" name="power" value="{{power}}" min="1" max="999999"> <br><br>
+    Reviews:<br>
+    {% for review in reviews:%}
+      <p>"{{review}}"</p>
+    {%endfor%}
 
     {% if user: %}
+
+    Review:<br>
+    <textarea name="review" rows="8" cols="80" maxlength="1000" placeholder="Max 1000 Characters"></textarea><br><br>
+    Rating: <select class="" name="rating">
+      {%for i in range(1,11):%}
+        <option value="{{i}}">{{i}}</option>
+      {%endfor%}
+    </select><br><br>
     <input type="submit" name="button" value="Update">
     <input type="submit" name="button" value="Delete">
 

@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Compare</title>
-  </head>
-  <body>
-    <form class="" action="/compare" method="post">
-      {% for ev in eVehicles: %}
-        <input type="checkbox" name="ev" value="{{ev.key.id()}}">{{ev.name}}<br><br>
-      {%endfor%}
-      <input type="submit" name="button" value="Compare">
-    </form>
 
-    <table>
+<head>
+  <meta charset="utf-8">
+  <title>Compare</title>
+</head>
 
-      <tr>
+<body>
+  <form class="" action="/compare" method="post">
+    {% for ev in eVehicles: %}
+    <input type="checkbox" name="ev" value="{{ev.key.id()}}">{{ev.name}}<br><br>
+    {%endfor%}
+    <input type="submit" name="button" value="Compare">
+  </form>
+
+  <table>
+
+    <tr>
+      <thead>
         <th>Name</th>
         <th>Manufacturer</th>
         <th>Year</th>
@@ -23,23 +26,30 @@
         <th>Cost</th>
         <th>Power</th>
 
-      </tr>
+      </thead>
+    </tr>
+
+    <tbody>
       {% for car in cars: %}
       <tr>
 
-          <td>{{car.name}}</td>
-          <td>{{car.manufacturer}}</td>
-          <td>{{car.year}}</td>
-          <td>{{car.batterySize}}</td>
-          <td>{{car.wltpRange}}</td>
-          <td>{{car.cost}}</td>
-          <td>{{car.power}}</td>
+        <td><a href="/ev?key={{car.key.id()}}">{{car.name}}</a> </td>
+        <td>{{car.manufacturer}}</td>
+        <td>{{car.year}}</td>
+        <td>{{car.batterySize}}</td>
+        <td>{{car.wltpRange}}</td>
+        <td>{{car.cost}}</td>
+        <td>{{car.power}}</td>
 
 
       </tr>
       {% endfor %}
-    </table>
+
+    </tbody>
+
+  </table>
 
 
-  </body>
+</body>
+
 </html>

@@ -41,7 +41,9 @@ class EV(webapp2.RequestHandler):
             'cost' : ev.cost,
             'power' : ev.power,
             'user': user,
-            'key': urlKey
+            'key': urlKey,
+            'reviews': ev.reviews,
+            'rating': ev.avgRating()
         }
 
 
@@ -63,12 +65,13 @@ class EV(webapp2.RequestHandler):
             ev.wltpRange = float(self.request.get('wltpRange'))
             ev.cost = float(self.request.get('cost'))
             ev.power = float(self.request.get('power'))
+            ev.rating.append(int(self.request.get('rating')))
+            ev.reviews.insert(0,self.request.get('review'))
 
-            if ev.isUnique():
-                ev.put()
-                self.redirect('/search')
-            else:
-                self.response.write('The Car already in the DataBase')
+
+            ev.put()
+            self.redirect('/search')
+
 
         elif self.request.get('button') == 'Delete':
             ev.key.delete()
