@@ -66,7 +66,8 @@ class EV(webapp2.RequestHandler):
             ev.cost = float(self.request.get('cost'))
             ev.power = float(self.request.get('power'))
             ev.rating.append(int(self.request.get('rating')))
-            ev.reviews.insert(0,self.request.get('review'))
+            if self.request.get('review'):
+                ev.reviews.insert(0,self.request.get('review'))
 
 
             ev.put()
