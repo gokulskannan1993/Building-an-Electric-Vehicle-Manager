@@ -32,10 +32,3 @@ class EVehicle(ndb.Model):
             return totalRating/len(self.rating)
         else:
             return 0
-
-
-    # method to get the max value of an attribute
-    def getMax(self, attribute):
-        query = EVehicle.query().Order('-attribute').Limit(1)
-        max = query[0].attribute
-        return max

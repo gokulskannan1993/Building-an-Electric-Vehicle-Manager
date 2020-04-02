@@ -15,8 +15,19 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 class AddEV(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
-        template = JINJA_ENVIRONMENT.get_template('addEV.html')
-        self.response.write(template.render())
+
+        # pull the current user from the Request
+        user = users.get_current_user()
+
+        if user:
+            # render the page
+            template = JINJA_ENVIRONMENT.get_template('addEV.html')
+            self.response.write(template.render())
+        else:
+            self.response.write("Login to access this feature")
+
+
+
 
 
     def post(self):
@@ -41,6 +52,7 @@ class AddEV(webapp2.RequestHandler):
                 self.redirect('/')
 
             else:
+                # incase of duplicate entries
                 self.response.write('The Car is already in the DataBase')
 
         # if the user changed his mind

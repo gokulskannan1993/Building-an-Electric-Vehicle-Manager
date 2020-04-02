@@ -17,7 +17,7 @@ class Compare(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
 
-
+        # getting all the vehicles in db
         query = EVehicle.query()
 
         template_values = {
@@ -30,20 +30,25 @@ class Compare(webapp2.RequestHandler):
     def post(self):
         self.response.headers['Content-Type'] = 'text/html'
 
+        # getting all the vehicles in db
         query = EVehicle.query()
 
 
 
         if self.request.get('button') == 'Compare':
+            # creating an empty list
             car = []
+            # getting all the ids and storing them into a list
             carIDs = self.request.get('ev', allow_multiple=True)
 
+            # getting each object from carIDs and storing them to car
             for carid in carIDs:
                 key = ndb.Key('EVehicle', int(carid))
                 ev = key.get()
                 car.append(ev)
 
             if len(car) >=2:
+                # getting the max and min values
                 maxRating = getMaxAvgRating(car)
                 minRating = getMinAvgRating(car)
                 maxBatterySize = getMaxBattery(car)
@@ -74,4 +79,5 @@ class Compare(webapp2.RequestHandler):
                 self.response.write(template.render(template_values))
 
             else:
+                # if less than two cars are selected
                 self.response.write('You have to select atleast 2 cars to Compare')

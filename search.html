@@ -27,7 +27,7 @@
     </form>
 
   <br><br>
-
+    <!-- rendering all the searched vehicles -->
     {% for ev in query: %}
         <a href="/ev?key={{ev.key.id()}}">{{ev.name}}</a> <br><br>
     {% endfor %}

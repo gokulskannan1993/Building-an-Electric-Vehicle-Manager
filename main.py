@@ -23,6 +23,7 @@ class MainPage(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
 
+        # initializing the strings
         url = ''
         url_string = ''
 
@@ -51,7 +52,7 @@ class MainPage(webapp2.RequestHandler):
         self.response.write(template.render(template_values))
 
 
-
+# routing
 app = webapp2.WSGIApplication(
             [('/', MainPage),
              ('/add', AddEV ),

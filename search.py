@@ -39,31 +39,31 @@ class Search(webapp2.RequestHandler):
 
 
         query = EVehicle.query()
-
+        # filtering query with each attribute
         if name:
             query = query.filter(EVehicle.name == name)
         if manufacturer:
             query = query.filter(EVehicle.manufacturer == manufacturer)
         if minYear:
-            query = query.filter(EVehicle.year > int(minYear))
+            query = query.filter(EVehicle.year >= int(minYear))
         if maxYear:
-            query = query.filter(EVehicle.year < int(maxYear))
+            query = query.filter(EVehicle.year <= int(maxYear))
         if minBatterySize:
-            query = query.filter(EVehicle.batterySize > float(minBatterySize))
+            query = query.filter(EVehicle.batterySize >= float(minBatterySize))
         if maxBatterySize:
-            query = query.filter(EVehicle.batterySize < float(maxBatterySize))
+            query = query.filter(EVehicle.batterySize <= float(maxBatterySize))
         if minWltpRange:
-            query = query.filter(EVehicle.wltpRange > float(minWltpRange))
+            query = query.filter(EVehicle.wltpRange >= float(minWltpRange))
         if maxWltpRange:
-            query = query.filter(EVehicle.wltpRange < float(maxWltpRange))
+            query = query.filter(EVehicle.wltpRange <= float(maxWltpRange))
         if minCost:
-            query = query.filter(EVehicle.cost > float(minCost))
+            query = query.filter(EVehicle.cost >= float(minCost))
         if maxCost:
-            query = query.filter(EVehicle.cost < float(maxCost))
+            query = query.filter(EVehicle.cost <= float(maxCost))
         if minPower:
-            query = query.filter(EVehicle.power > float(minPower))
+            query = query.filter(EVehicle.power >= float(minPower))
         if maxPower:
-            query = query.filter(EVehicle.power < float(maxPower))
+            query = query.filter(EVehicle.power <= float(maxPower))
 
 
         # generate a map that contains everything that we need to pass to the template

@@ -7,10 +7,12 @@
 </head>
 
 <body>
+  <!-- if a user is logged in -->
   {% if user: %}
   <p>Hello {{user.email()}} welcome to the application</p>
 
   <h5>To Add an Electric Vehicle <a href="/add">Click Here</a> </h5>
+  <!-- for guest  -->
   {% else: %}
   <p>Hello guest welcome to the application</p>
   {% endif %}

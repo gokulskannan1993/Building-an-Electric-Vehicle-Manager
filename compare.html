@@ -9,6 +9,7 @@
 <body>
   <form class="" action="/compare" method="post">
     {% for ev in eVehicles: %}
+    <!-- showing cars to select with a checkbox -->
     <input type="checkbox" name="ev" value="{{ev.key.id()}}">{{ev.name}}<br><br>
     {%endfor%}
     <input type="submit" name="button" value="Compare">
@@ -17,6 +18,7 @@
   <table>
 
     <tr>
+      <!-- headers for table -->
       <thead>
         <th>Name</th>
         <th></th>
@@ -38,6 +40,7 @@
     </tr>
 
     <tbody>
+      <!-- looping through cars -->
       {% for car in cars: %}
       <tr>
 
